@@ -6,47 +6,26 @@
 # Use $XINITRC variable if file exists.
 [ -f "$XINITRC" ] && alias startx="startx $XINITRC"
 
-# sudo not required for some system commands
-for x in mount umount sv pacman updatedb su ; do
-	alias $x="sudo $x"
-done
+alias ls="ls -hN --color=auto --group-directories-first"
+alias l="ls"
+alias ll="ls -lhN --color=auto --group-directories-first"
+alias la="ls -ahN --color=auto --group-directories-first"
+alias l.="ls -ahN --color=auto --group-directories-first | egrep '^\.'"
 
-# Verbosity and settings that you pretty much just always are going to want.
-alias \
-	cp="cp -iv" \
-	mv="mv -iv" \
-	rm="rm -vI" \
-	bc="bc -ql" \
-	mkd="mkdir -pv" \
-	yt="youtube-dl --add-metadata -i" \
-	yta="yt -x -f bestaudio/best" \
-	ffmpeg="ffmpeg -hide_banner"
+alias grep="grep --color=auto"
+alias egrep="egrep --color=auto"
+alias fgrep="fgrep --color=auto"
 
-# Colorize commands when possible.
-alias \
-	ls="ls -hN --color=auto --group-directories-first" \
-	grep="grep --color=auto" \
-	diff="diff --color=auto" \
-	ccat="highlight --out-format=ansi"
+# Adding flags
+alias cp="cp -i"
+alias df="df -h"
+alias free="free -m"
+alias vifm="~/.config/vifm/scripts/vifmrun"
 
-# These common commands are just too long! Abbreviate them.
-alias \
-	ka="killall" \
-	g="git" \
-	trem="transmission-remote" \
-	YT="youtube-viewer" \
-	sdn="sudo shutdown -h now" \
-	e="$EDITOR" \
-	v="$EDITOR" \
-	p="sudo pacman" \
-	xi="sudo xbps-install" \
-	xr="sudo xbps-remove -R" \
-	xq="xbps-query" \
-	z="zathura"
+# youtube-dl
+alias yta-mp3="youtube-dl --add-metadata --extract-audio --audio-format mp3"
+alias yta-wav="youtube-dl --extract-audio --audio-format wav"
+alias ytv-mp4="youtube-dl -f 140"
 
-alias \
-	magit="nvim -c MagitOnly" \
-	ref="shortcuts >/dev/null; source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutrc ; source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/zshnameddirrc" \
-	weath="less -S ${XDG_DATA_HOME:-$HOME/.local/share}/weatherreport" \
-	vifm="${XDG_CONFIG_HOME:-$HOME/.config}/vifm/scripts/vifmrun" \
-alias config='/usr/bin/git --git-dir=/home/blake/.dotfiles --work-tree=/home/blake'
+# Git
+alias config='/usr/bin/git --git-dir=/home/blake/.dotfiles --work-tree=/home/blake' # Working with dotfiles

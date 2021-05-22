@@ -15,6 +15,7 @@ call plug#begin(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/plugged"
 	Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 	Plug 'junegunn/fzf.vim'
 	Plug 'akinsho/nvim-bufferline.lua'
+	Plug 'wellle/context.vim'
 
 	" Code
 	Plug 'neoclide/coc.nvim', {'branch': 'release'}
