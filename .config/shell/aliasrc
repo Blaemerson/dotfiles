@@ -9,7 +9,7 @@
 alias ls="ls -hN --color=auto --group-directories-first"
 alias l="ls"
 alias ll="ls -lhN --color=auto --group-directories-first"
-alias la="ls -ahN --color=auto --group-directories-first"
+alias la="ls -lahN --color=auto --group-directories-first"
 alias l.="ls -ahN --color=auto --group-directories-first | egrep '^\.'"
 
 alias grep="grep --color=auto"
@@ -21,6 +21,7 @@ alias cp="cp -i"
 alias df="df -h"
 alias free="free -m"
 alias vifm="~/.config/vifm/scripts/vifmrun"
+alias fm='cd "$(~/.config/vifm/scripts/vifmrun)"'
 
 # youtube-dl
 alias yta-mp3="youtube-dl --add-metadata --extract-audio --audio-format mp3"

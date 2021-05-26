@@ -1,5 +1,7 @@
 let mapleader =";"
 
+autocmd! BufWritePost $MYVIMRC source $MYVIMRC | echom "Reloaded $NVIMRC"
+
 if ! filereadable(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/autoload/plug.vim"'))
 	echo "Downloading junegunn/vim-plug to manage plugins..."
 	silent !mkdir -p ${XDG_CONFIG_HOME:-$HOME/.config}/nvim/autoload/
@@ -14,26 +16,39 @@ call plug#begin(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/plugged"
 	Plug 'tpope/vim-repeat'
 	Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 	Plug 'junegunn/fzf.vim'
+
+	" Buffer managment
 	Plug 'akinsho/nvim-bufferline.lua'
-	Plug 'wellle/context.vim'
+	Plug 'famiu/bufdelete.nvim'
+
+	" Plug 'vifm/vifm.vim'
+	" Plug 'flazz/vim-colorschemes'
 
 	" Code
 	Plug 'neoclide/coc.nvim', {'branch': 'release'}
 	Plug 'kyazdani42/nvim-web-devicons'
-	Plug 'sainnhe/gruvbox-material'
 
-	" Word processor Plug 'godlygeek/tabular' Plug 'plasticboy/vim-markdown'
+	" Colors
+	Plug 'sainnhe/gruvbox-material'
+	Plug 'folke/tokyonight.nvim'
+	Plug 'YorickPeterse/vim-paper'
+
+	" Word processor
+	" Plug 'godlygeek/tabular'
+	" Plug 'plasticboy/vim-markdown'
 	" Plug 'junegunn/goyo.vim'
 	" Plug 'vimwiki/vimwiki'
-	" Plug 'YorickPeterse/vim-paper'
 cal plug#end()
 
 lua require'bufferline'.setup()
+nnoremap <Leader>s :%s/\<<C-r><C-w>\>//g<Left><Left>
+nnoremap <Leader>x :Bdelete<CR>
 
 " set updatetime=300
 set termguicolors
 set title
-color gruvbox-material
+color tokyonight
+" color gruvbox-material
 set bg=dark
 set go=a
 set mouse=a
@@ -42,8 +57,11 @@ set clipboard+=unnamedplus
 set noshowmode
 set noruler
 set laststatus=0
+
 set tabstop=4
 set shiftwidth=4
+set expandtab
+
 set noshowcmd
 set nowrap
 set nocompatible

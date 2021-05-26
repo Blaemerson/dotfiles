@@ -1,10 +1,3 @@
-"  ____ _____
-" |  _ \_   _|  Derek Taylor (DistroTube)
-" | | | || |    http://www.youtube.com/c/DistroTube
-" | |_| || |    http://www.gitlab.com/dwt1/
-" |____/ |_|
-" |____/ |_|
-
 " vim: filetype=vifm :
 " My config file for the vifm terminal file manager.
 " ------------------------------------------------------------------------------
@@ -472,7 +465,7 @@ nnoremap cc cw<c-u>
 nnoremap A cw
 
 " Open console in current directory
-nnoremap ,t :!alacritty &<cr>
+nnoremap ,t :!st &<cr>
 
 " Open editor to edit vifmrc and apply settings after returning to vifm
 nnoremap ,c :write | edit $MYVIFMRC | restart<cr>
