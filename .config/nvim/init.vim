@@ -1,188 +1,76 @@
 let mapleader =";"
 
-autocmd! BufWritePost $MYVIMRC source $MYVIMRC | echom "Reloaded $NVIMRC"
+""""""""""""""""""""
+"      Sources     "
+""""""""""""""""""""
+source ~/.config/nvim/pluginit.vim 	" enable plugins
 
-if ! filereadable(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/autoload/plug.vim"'))
-	echo "Downloading junegunn/vim-plug to manage plugins..."
-	silent !mkdir -p ${XDG_CONFIG_HOME:-$HOME/.config}/nvim/autoload/
-	silent !curl "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim" > ${XDG_CONFIG_HOME:-$HOME/.config}/nvim/autoload/plug.vim
-	autocmd VimEnter * PlugInstall
-endif
+""""""""""""""""""""
+" General settings "
+""""""""""""""""""""
+" automatically source this file when edited
+autocmd! BufWritePost $MYVIMRC source $MYVIMRC | echo "Reloaded $MYVIMRC" 
 
-call plug#begin(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/plugged"'))
-	" Generic
-	Plug 'tpope/vim-surround'
-	Plug 'tpope/vim-commentary'
-	Plug 'tpope/vim-repeat'
-	Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-	Plug 'junegunn/fzf.vim'
+" Generic
+colorscheme tokyonight
+syntax on 				" enable syntax
+set termguicolors                       " use true color
+" set shellcmdflag=-ic                    " make shell interactive (allows aliases)
+set background=dark 			" background set to dark
+set clipboard+=unnamedplus 		" yank/delete copies to clipboard
+set number relativenumber 		" show absolute line number on currentline, relative line numbers on other lines
+set splitbelow splitright 		" open splits down and to the right
+set encoding=utf-8 			" set file encoding
+set title 				" label window with name of file
+set mouse=a 				" allow mouse usage
+set timeoutlen=500 			" time in ms to wait for mapped sequence to complete
+set updatetime=500 			" time in ms to wait on cursorhold events
+set nowrap 				" don't wrap long lines
+set completeopt=menuone,noselect 	" autocompletion menu
 
-	" Buffer managment
-	Plug 'akinsho/nvim-bufferline.lua'
-	Plug 'famiu/bufdelete.nvim'
+" Tab settings
+set softtabstop=2 			" number of spaces in tab when editing
+set shiftwidth=2 			" number of spaces for autoindent
+set expandtab                           " expand tabs to spaces
 
-	" Plug 'vifm/vifm.vim'
-	" Plug 'flazz/vim-colorschemes'
+" Declutter
+set noshowmode 				" don't show mode on status line
+set noshowcmd 				" don't show last command on line
+set noruler 				" don't show ruler on line
+set laststatus=0 			" don't show last status
+set nohlsearch 				" don't highlight search terms
 
-	" Code
-	Plug 'neoclide/coc.nvim', {'branch': 'release'}
-	Plug 'kyazdani42/nvim-web-devicons'
-
-	" Colors
-	Plug 'sainnhe/gruvbox-material'
-	Plug 'folke/tokyonight.nvim'
-	Plug 'YorickPeterse/vim-paper'
-
-	" Word processor
-	" Plug 'godlygeek/tabular'
-	" Plug 'plasticboy/vim-markdown'
-	" Plug 'junegunn/goyo.vim'
-	" Plug 'vimwiki/vimwiki'
-cal plug#end()
-
-lua require'bufferline'.setup()
-nnoremap <Leader>s :%s/\<<C-r><C-w>\>//g<Left><Left>
-nnoremap <Leader>x :Bdelete<CR>
-
-" set updatetime=300
-set termguicolors
-set title
-color tokyonight
-" color gruvbox-material
-set bg=dark
-set go=a
-set mouse=a
-set nohlsearch
-set clipboard+=unnamedplus
-set noshowmode
-set noruler
-set laststatus=0
-
-set tabstop=4
-set shiftwidth=4
-set expandtab
-
-set noshowcmd
-set nowrap
-set nocompatible
-filetype plugin on
-syntax on
-set encoding=utf-8
-set number relativenumber
-set wildmode=longest,list,full " Enable autocompletion
-autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o " Disables automatic commenting on newline
-set splitbelow splitright
-
-au BufEnter * if (winnr("$") == 1 && bufname()=='' && &filetype != 'coc-explorer') | exe ':CocCommand explorer' | endif
-au BufEnter * if (winnr("$") == 1 && &filetype == 'coc-explorer') | q | endif
-
-" Remaps
-nnoremap c "_c
-nnoremap <leader>q :qa!<CR>
-nnoremap <leader>w :w<CR>
-nnoremap <leader>z ZZ
-" nnoremap <leader>x :bd<CR>
-vnoremap . :normal .<CR>
-nnoremap <silent><tab> :BufferLineCycleNext<CR>
-nnoremap <silent><s-tab> :BufferLineCyclePrev<CR>
-" Replace all is aliased to S.
-nnoremap S :%s//g<Left><Left>
-" Shortcutting split navigation, saving a keypress:
-map <C-h> <C-w>h
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-l> <C-w>l
-map ! :!
-" Compile document, be it groff/LaTeX/markdown/etc.
-map <leader>c :w! \| !compiler "<c-r>%"<CR>
-" Open corresponding .pdf/.html or preview
-map <leader>p :!opout <c-r>%<CR><CR>
-" Save file as sudo on files that require root permission
-cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
-nnoremap <C-n> :NvimTreeToggle<CR>
-map <leader>n :NvimTreeToggle<CR>
-
-" Word Processor
-func! WordProcessor()
-	" movement changes
-	map j gj
-	map k gk
-	" formatting text
-	setlocal formatoptions=1
-	setlocal noexpandtab
-	setlocal wrap
-	setlocal linebreak
-	" spelling and thesaurus
-	setlocal spell spelllang=en_us
-	set complete+=s
-	color paper
-	set bg=light
-	Goyo 70
-endfu
-com! WP call WordProcessor()
-
-func! Md2HTML()
-	!pandoc -o %:r.html
-endfu
-com! Md2HTML call Md2HTML()
-
-func! Md2PDF()
-	!pandoc --pdf-engine pdfroff % -o %:r.pdf
-endfu
-com! Md2PDF call Md2PDF()
-
-" Ensure files are read as what I want:
-	let g:vimwiki_ext2syntax = {'.Rmd': 'markdown', '.wiki': 'markdown', '.rmd': 'markdown','.md': 'markdown', '.markdown': 'markdown', '.mdown': 'markdown'}
-	let g:vimwiki_list = [{'path': '~/note', 'syntax': 'markdown', 'ext': '.md'}]
-	autocmd BufRead,BufNewFile /tmp/calcurse*,~/.calcurse/notes/* set filetype=markdown
-	autocmd BufRead,BufNewFile *.ms,*.me,*.mom,*.man set filetype=groff
-	autocmd BufRead,BufNewFile *.tex set filetype=tex
-	autocmd BufRead,BufNewFile index.md set filetype=Markdown
-
-" Enable Goyo by default for mutt writing
-	autocmd BufRead,BufNewFile /tmp/neomutt* let g:goyo_width=80
-	autocmd BufRead,BufNewFile /tmp/neomutt* :Goyo | set bg=light
-	autocmd BufRead,BufNewFile /tmp/neomutt* map ZZ :Goyo\|x!<CR>
-	autocmd BufRead,BufNewFile /tmp/neomutt* map ZQ :Goyo\|q!<CR>
-
-" Automatically deletes all trailing whitespace and newlines at end of file on save.
-	autocmd BufWritePre * %s/\s\+$//e
-	autocmd BufWritePre * %s/\n\+\%$//e
-	autocmd BufWritePre *.[ch] %s/\%$/\r/e
-
-" When shortcut files are updated, renew bash and ranger configs with new material:
-	autocmd BufWritePost bm-files,bm-dirs !shortcuts
-
-" Run xrdb whenever Xdefaults or Xresources are updated.
-	autocmd BufRead,BufNewFile Xresources,Xdefaults,xresources,xdefaults set filetype=xdefaults
-	autocmd BufWritePost Xresources,Xdefaults,xresources,xdefaults !xrdb %
-
-" Recompile dwmblocks on config edit.
-	autocmd BufWritePost ~/.local/src/dwmblocks/config.h !cd ~/.local/src/dwmblocks/; sudo make install && { killall -q dwmblocks;setsid -f dwmblocks }
-
-" Turns off highlighting on the bits of code that are changed, so the line that is changed is highlighted but the actual text that has changed stands out on the line and is readable.
-if &diff
-    highlight! link DiffText MatchParen
-endif
-
-" Function for toggling the bottom statusbar:
-let s:hidden_all = 1
-function! ToggleHiddenAll()
-    if s:hidden_all  == 0
-        let s:hidden_all = 1
-        set noshowmode
-        set noruler
-        set laststatus=0
-        set noshowcmd
-    else
-        let s:hidden_all = 0
-        set showmode
-        set ruler
-        set laststatus=2
-        set showcmd
+" Persistent undo
+if !has('nvim')
+    if !isdirectory($HOME . '/.local/vim/undo')
+        call mkdir($HOME . '/.local/vim/undo', 'p', 0700)
     endif
-endfunction
-nnoremap <leader>h :call ToggleHiddenAll()<CR>
+    set undodir=~/.local/vim/undo
+endif
+set undofile
 
-source ~/.config/nvim/plug-config/coc.vim
-source ~/.config/nvim/plug-config/fzf.vim
+
+""""""""""""""""""""
+"     Mappings     "
+""""""""""""""""""""
+
+
+nnoremap <LEADER>w :w<CR>
+nnoremap <LEADER>q :q!<CR>
+nnoremap <LEADER>z ZZ
+
+map ! :!
+
+" Remap splits navigation to just CTRL + hjkl
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+" Make adjusing split sizes a bit more friendly
+noremap <silent> <C-Left> :vertical resize +3<CR>
+noremap <silent> <C-Right> :vertical resize -3<CR>
+noremap <silent> <C-Up> :resize +3<CR>
+noremap <silent> <C-Down> :resize -3<CR>
+
+nnoremap <LEADER>* :%s/\<<C-r><C-w>\>//g<Left><Left>    " replace every instance of the word under the cursor

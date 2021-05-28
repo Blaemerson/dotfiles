@@ -12,21 +12,21 @@ alias ll="ls -lhN --color=auto --group-directories-first"
 alias la="ls -lahN --color=auto --group-directories-first"
 alias l.="ls -ahN --color=auto --group-directories-first | egrep '^\.'"
 
-alias grep="grep --color=auto"
-alias egrep="egrep --color=auto"
-alias fgrep="fgrep --color=auto"
+alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
 
 # Adding flags
-alias cp="cp -i"
-alias df="df -h"
-alias free="free -m"
-alias vifm="~/.config/vifm/scripts/vifmrun"
+alias cp='cp -i'
+alias df='df -h'
+alias free='free -m'
+alias vifm='~/.config/vifm/scripts/vifmrun'
 alias fm='cd "$(~/.config/vifm/scripts/vifmrun)"'
 
 # youtube-dl
-alias yta-mp3="youtube-dl --add-metadata --extract-audio --audio-format mp3"
-alias yta-wav="youtube-dl --extract-audio --audio-format wav"
-alias ytv-mp4="youtube-dl -f 140"
+alias yta-mp3='youtube-dl --add-metadata --extract-audio --audio-format mp3 -o "./%(title)s.%(ext)s"'
+# alias yta-wav='youtube-dl --extract-audio --audio-format wav'
+alias ytv-mp4='youtube-dl -f "[height<=720]" -o "./%(title)s.%(ext)s"'
 
 # Git
 alias config='/usr/bin/git --git-dir=/home/blake/.dotfiles --work-tree=/home/blake' # Working with dotfiles
