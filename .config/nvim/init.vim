@@ -12,11 +12,11 @@ source ~/.config/nvim/pluginit.vim 	" enable plugins
 autocmd! BufWritePost $MYVIMRC source $MYVIMRC | echo "Reloaded $MYVIMRC" 
 
 " Generic
-colorscheme tokyonight
+colorscheme one
+set background=dark 			" background set to dark
 syntax on 				" enable syntax
 set termguicolors                       " use true color
 " set shellcmdflag=-ic                    " make shell interactive (allows aliases)
-set background=dark 			" background set to dark
 set clipboard+=unnamedplus 		" yank/delete copies to clipboard
 set number relativenumber 		" show absolute line number on currentline, relative line numbers on other lines
 set splitbelow splitright 		" open splits down and to the right
