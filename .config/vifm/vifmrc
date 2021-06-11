@@ -108,6 +108,8 @@ endif
 set statusline="  Hint: %z%= %A %10u:%-7g %15s %20d  "
 
 " Set line numbers to show
+set number
+set relativenumber
 
 " ------------------------------------------------------------------------------
 
@@ -439,6 +441,9 @@ nnoremap sx :!sxiv -t %d & <cr>
 
 "Open selected images in gimp
 nnoremap gp :!gimp %f & <cr>
+
+" Set background to selected file
+nnoremap b :!setbg %f & <cr>
 
 " Start shell in current directory
 nnoremap s :shell<cr>

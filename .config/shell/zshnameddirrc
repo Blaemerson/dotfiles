@@ -1,12 +1,12 @@
 hash -d cac=/home/blake/.cache 
 hash -d cf=/home/blake/.config 
-hash -d D=/home/blake/gets 
-hash -d d=/home/blake/docs 
+hash -d D=/home/blake/downloads 
+hash -d d=/home/blake/documents 
 hash -d dt=/home/blake/.local/share 
 hash -d h=/home/blake 
-hash -d m=/home/blake/song 
+hash -d m=/home/blake/music 
 hash -d mn=/mnt 
-hash -d pp=/home/blake/pics 
+hash -d pp=/home/blake/pictures 
 hash -d sc=/home/blake/.local/bin 
 hash -d src=/home/blake/.local/src 
 hash -d vv=/home/blake/vids 

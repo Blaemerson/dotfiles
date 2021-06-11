@@ -13,11 +13,10 @@ autocmd! BufWritePost $MYVIMRC source $MYVIMRC | echo "Reloaded $MYVIMRC"
 
 " Generic
 colorscheme one
-set background=dark 			" background set to dark
 syntax on 				" enable syntax
+set background=dark 			" background set to dark
 set termguicolors                       " use true color
-" set shellcmdflag=-ic                    " make shell interactive (allows aliases)
-set clipboard+=unnamedplus 		" yank/delete copies to clipboard
+set clipboard+=unnamedplus 		" yank/delete/paste to/from clipboard
 set number relativenumber 		" show absolute line number on currentline, relative line numbers on other lines
 set splitbelow splitright 		" open splits down and to the right
 set encoding=utf-8 			" set file encoding
@@ -73,4 +72,10 @@ noremap <silent> <C-Right> :vertical resize -3<CR>
 noremap <silent> <C-Up> :resize +3<CR>
 noremap <silent> <C-Down> :resize -3<CR>
 
-nnoremap <LEADER>* :%s/\<<C-r><C-w>\>//g<Left><Left>    " replace every instance of the word under the cursor
+" replace every instance of the word under the cursor
+nnoremap <LEADER>* :%s/\<<C-r><C-w>\>//g<Left><Left>
+
+" close current buffer
+nnoremap <leader>x :bp <bar> bd! #<cr>
+"create a new buffer (save it with :w ./path/to/FILENAME)
+nnoremap <leader>B :enew<cr>
