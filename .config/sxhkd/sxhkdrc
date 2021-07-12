@@ -1,0 +1,41 @@
+# Reload this configuration file
+super + Escape
+  pkill -USR1 -x sxhkd
+
+# System
+super + BackSpace
+  sysact
+
+control + shift + Escape
+  $TERMINAL -e htop
+
+super + {_,shift + } Return
+  {$TERMINAL, dmenu_run}
+
+# Internet
+super + n
+  $TERMINAL -e nmtui
+
+alt + {_,shift + } w
+  {$BROWSER, $TERMINAL -e dmenusurfraw}
+
+# Music
+alt + m
+  $TERMINAL -e ncmpcpp
+
+alt + {_, shift + } + p
+  {mpc toggle, pauseallmpv}
+
+alt + {_,shift + } + bracketleft
+  {mpc seek -5, mpc seek -30}
+
+alt + {_,shift + } + bracketright
+  {mpc seek +5, mpc seek +30}
+
+# Passwords
+super + control + p
+ passmenu
+
+# File explorer
+alt + {_, shift + } + f
+  {$TERMINAL -e ~/.config/vifm/scripts/vifmrun, $TERMINAL -e lf}

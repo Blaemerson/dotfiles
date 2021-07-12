@@ -464,6 +464,9 @@ nnoremap yd :!echo %d | xclip %i<cr>
 " Yank current file path into the clipboard
 nnoremap yf :!echo %c:p | xclip %i<cr>
 
+" Drag and drop current file
+nnoremap dr :!dragon %f &<cr>
+
 " Mappings for faster renaming
 nnoremap I cw<c-a>
 nnoremap cc cw<c-u>
