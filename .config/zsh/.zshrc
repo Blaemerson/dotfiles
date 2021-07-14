@@ -1,5 +1,3 @@
-# Luke's config for the Zoomer Shell
-
 # Enable colors and change prompt:
 autoload -U colors && colors	# Load colors
 # PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
@@ -26,8 +24,8 @@ HISTFILE=~/.cache/zsh/history
 # _comp_options+=(globdots)		# Include hidden files.
 
 # vi mode
-bindkey -v
-export KEYTIMEOUT=1
+# bindkey -v
+# export KEYTIMEOUT=1
 
 # # Use vim keys in tab complete menu:
 # bindkey -M menuselect 'h' vi-backward-char
@@ -36,9 +34,10 @@ export KEYTIMEOUT=1
 # bindkey -M menuselect 'j' vi-down-line-or-history
 # bindkey -v '^?' backward-delete-char
 
-vicd()
+function vicd()
 {
-    local dst="$(command vifm --choose-dir - "$@")"
+    # local dst="$(command vifm --choose-dir - "$@")"
+    local dst="$(command ~/.config/vifm/scripts/vifmrun)"
     if [ -z "$dst" ]; then
         echo 'Directory picking cancelled/failed'
         return 1

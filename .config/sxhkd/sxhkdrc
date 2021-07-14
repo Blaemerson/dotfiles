@@ -2,6 +2,10 @@
 super + Escape
   pkill -USR1 -x sxhkd
 
+# Edit this configuration file
+control + alt + c
+  $TERMINAL -e less ~/.config/sxhkd/sxhkdrc
+
 # System
 super + BackSpace
   sysact
@@ -39,3 +43,12 @@ super + control + p
 # File explorer
 alt + {_, shift + } + f
   {$TERMINAL -e ~/.config/vifm/scripts/vifmrun, $TERMINAL -e lf}
+
+alt + {_, shift + } c
+  {dmenuconfs, dmenusrc}
+
+alt + v
+    $TERMINAL -e nvim
+
+alt + i
+    sxiv ~/pictures/*

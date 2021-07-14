@@ -11,6 +11,7 @@ alias l="ls"
 alias ll="ls -lhN --color=auto --group-directories-first"
 alias la="ls -lahN --color=auto --group-directories-first"
 alias l.="ls -ahN --color=auto --group-directories-first | egrep '^\.'"
+alias lg="ls -ahN --color=auto --group-directories-first | egrep '${1}'"
 
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
