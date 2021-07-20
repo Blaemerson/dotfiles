@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+# get_config() {
+#   local configs=( "~/.config" )
+
+#   for conf in "${!configs[@]}"/*; do
+#     if [[ -f ${conf} ]]; then
+#       echo "${conf}"
+#       return
+#       break
+#     fi
+#   done
+# }
+
+main() {
+  # local configs=$(get_config)
+  declare -A configs
+  configs[dmenuconfs]="$HOME/.local/bin/dmenuconfs"
+  configs[nvim]="$HOME/.config/nvim/init.lua"
+  configs[fonts]="$HOME/.config/fontconfig/fonts.conf"
+  configs[alacritty]="$HOME/.config/alacritty/alacritty.yml"
+  configs[zsh]="$HOME/.config/zsh/.zshrc"
+  configs[bash]="$HOME/.bashrc"
+  configs[xresources]="$HOME/.config/x11/xresources"
+  configs[keybinds]="$HOME/.config/sxhkd/sxhkdrc"
+  configs[profile]="$HOME/.config/shell/profile"
+  configs[aliases]="$HOME/.config/shell/aliasrc"
+  configs[sxiv]="$HOME/.config/sxiv/exec/key-handler"
+  configs[dwm]="$HOME/.local/src/dwm/config.h"
+  configs[dmenu]="$HOME/.local/src/dmenu/config.h"
+  configs[dwmblocks]="$HOME/.local/src/dwmblocks/config.h"
+  configs[st]="$HOME/.local/src/st/config.h"
+
+  choice=$(printf '%s\n' "${!configs[@]}" | sort | dmenu -i -l 20 -p 'Edit config:' "$@")
+
+  # What to do when/if we choose a file to edit.
+  if [ "$choice" ]; then
+    cfg=$(printf '%s\n' "${configs["${choice}"]}")
+    # shellcheck disable=SC2154
+    st -e $EDITOR "$cfg"
+  # What to do if we just escape without choosing anything.
+  else
+      echo "Program terminated." && exit 0
+  fi
+}
+
+[[ "${BASH_SOURCE[0]}" == "${0}" ]] && main "$@"

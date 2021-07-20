@@ -4,7 +4,7 @@ super + Escape
 
 # Edit this configuration file
 control + alt + c
-  $TERMINAL -e less ~/.config/sxhkd/sxhkdrc
+  $TERMINAL -e nvim ~/.config/sxhkd/sxhkdrc
 
 # System
 super + BackSpace
@@ -44,11 +44,14 @@ super + control + p
 alt + {_, shift + } + f
   {$TERMINAL -e ~/.config/vifm/scripts/vifmrun, $TERMINAL -e lf}
 
+# Edit files quickly
 alt + {_, shift + } c
-  {dmenuconfs, dmenusrc}
+  {quickedit, dmenuconfs}
 
+# Open vim
 alt + v
     $TERMINAL -e nvim
 
+# Open sxiv in thumbnail mode
 alt + i
-    sxiv ~/pictures/*
+    sxiv -t ~/pictures/*

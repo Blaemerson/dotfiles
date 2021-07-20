@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+# get_config() {
+#   local configs=( "~/.config" )
+
+#   for conf in "${!configs[@]}"/*; do
+#     if [[ -f ${conf} ]]; then
+#       echo "${conf}"
+#       return
+#       break
+#     fi
+#   done
+# }
+
+main() {
+  # local configs=$(get_config)
+  declare -A configs
+  configs[dmenusrc]="$HOME/.local/bin/dmenusrc"
+  configs[dmenu]="$HOME/.local/src/dmenu/config.h"
+  configs[dwm]="$HOME/.local/src/dwm/config.h"
+  configs[st]="$HOME/.local/src/st/config.h"
+  configs[dwmblocks]="$HOME/.local/src/dwmblocks/config.h"
+
+  choice=$(printf '%s\n' "${!configs[@]}" | sort | dmenu -i -l 20 -p 'Edit config:' "$@")
+
+  # What to do when/if we choose a file to edit.
+  if [ "$choice" ]; then
+    cfg=$(printf '%s\n' "${configs["${choice}"]}")
+    # shellcheck disable=SC2154
+    st -e $EDITOR "$cfg"
+  # What to do if we just escape without choosing anything.
+  else
+      echo "Program terminated." && exit 0
+  fi
+}
+
+[[ "${BASH_SOURCE[0]}" == "${0}" ]] && main "$@"
