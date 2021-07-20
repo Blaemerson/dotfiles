@@ -17,8 +17,8 @@ super + {_,shift + } Return
   {$TERMINAL, dmenu_run}
 
 # Internet
-super + n
-  $TERMINAL -e nmtui
+super + {_, shift + } n
+    {networkmanager_dmenu, $TERMINAL -e nmtui}
 
 alt + {_,shift + } w
   {$BROWSER, $TERMINAL -e dmenusurfraw}
