@@ -52,6 +52,6 @@ alt + {_, shift + } c
 alt + v
     $TERMINAL -e nvim
 
-# Open sxiv in thumbnail mode
+# Open sxiv in thumbnail modej
 alt + i
-    sxiv -t ~/pictures/*
+    dmenuimg

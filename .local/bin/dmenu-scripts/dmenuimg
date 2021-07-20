@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+main() {
+  declare -A imagedirs
+  imagedirs[\(a\)ll]="$HOME/pictures/"
+  imagedirs[\(w\)allpapers]="$HOME/pictures/wallpapers/"
+  imagedirs[\(u\)seful]="$HOME/pictures/useful/"
+  imagedirs[\(m\)emes]="$HOME/pictures/memes/"
+
+  choice=$(printf '%s\n' "${!imagedirs[@]}" | sort | dmenu -i -l 20 -p 'Select images:' "$@")
+
+  # What to do when/if we choose a file to edit.
+  if [ "$choice" ]; then
+    img=$(printf '%s\n' "${imagedirs["${choice}"]}")
+    # shellcheck disable=SC2154
+    sxiv -t "$img"*
+  # What to do if we just escape without choosing anything.
+  else
+      echo "Program terminated." && exit 0
+  fi
+}
+
+[[ "${BASH_SOURCE[0]}" == "${0}" ]] && main "$@"
