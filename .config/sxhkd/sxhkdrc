@@ -55,3 +55,6 @@ alt + v
 # Open sxiv in thumbnail modej
 alt + i
     dmenuimg
+
+FN + i
+    dmenuimg

@@ -21,19 +21,22 @@ alias fgrep='fgrep --color=auto'
 alias cp='cp -i'
 alias df='df -h'
 alias free='free -m'
+
 alias vifm='~/.config/vifm/scripts/vifmrun'
 alias fm='cd "$(~/.config/vifm/scripts/vifmrun)"'
 
+# Pacman
 alias search-pac="pacman -Slq | fzf --multi --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S"
 alias remove-pac="pacman -Qq | fzf --multi --preview 'pacman -Qi {1}' | xargs -ro sudo pacman -Rns"
 
 alias install="sudo pacman -S"
+alias orphans="pacman -Qdtq"
 alias update="sudo pacman -Syu"
 alias uninstall="sudo pacman -Rns"
 
 # youtube-dl
-alias yta-mp3='youtube-dl --add-metadata --extract-audio --audio-format mp3 -o "./%(title)s.%(ext)s"'
-alias ytv-mp4='youtube-dl -f "[height<=720]" -o "./%(title)s.%(ext)s"'
+alias yta='youtube-dl --add-metadata --extract-audio --audio-format mp3 -o "./%(title)s.%(ext)s"'
+alias ytv='youtube-dl -f "[height<=720]" -o "./%(title)s.%(ext)s"'
 
 # Git
 alias config='/usr/bin/git --git-dir=/home/blake/.dotfiles --work-tree=/home/blake' # Working with dotfiles
@@ -57,3 +60,4 @@ fe() {
 
 alias dragon='dragon -a -x'
 alias rmswp='rm ~/.local/share/nvim/swap/*'
+alias myip='curl ipinfo.io/ip'

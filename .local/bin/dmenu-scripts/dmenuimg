@@ -8,14 +8,14 @@ main() {
   imagedirs[\(w\)allpapers]="$HOME/pictures/wallpapers/"
   imagedirs[\(u\)seful]="$HOME/pictures/useful/"
   imagedirs[\(m\)emes]="$HOME/pictures/memes/"
+  imagedirs[\(g\)ifs]="$HOME/pictures/gif/"
 
   choice=$(printf '%s\n' "${!imagedirs[@]}" | sort | dmenu -i -l 20 -p 'Select images:' "$@")
 
   # What to do when/if we choose a file to edit.
   if [ "$choice" ]; then
     img=$(printf '%s\n' "${imagedirs["${choice}"]}")
-    # shellcheck disable=SC2154
-    sxiv -t "$img"*
+    sxiv -at "$img"*
   # What to do if we just escape without choosing anything.
   else
       echo "Program terminated." && exit 0

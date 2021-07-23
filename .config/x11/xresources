@@ -14,39 +14,6 @@
 /* cyan		6	14 */
 /* white	7	15 */
 
-! special
-*.foreground:   #acb4c2
-*.background:   #011627
-*.cursorColor:  #9ca1aa
-
-! black
-*.color0:       #1d3b53
-*.color8:       #7c8f8f
-
-! red
-*.color1:       #fc514e
-*.color9:       #ff5874
-
-! green
-*.color2:       #a1cd5e
-*.color10:      #21c7a8
-
-! yellow
-*.color3:       #e3d18e
-*.color11:      #ecc48d
-
-! blue
-*.color4:       #5a99d7
-*.color12:      #5a99d7
-
-! magenta
-*.color5:       #c792ea
-*.color13:      #ae81ff
-
-! cyan
-*.color6:       #7fdbca
-*.color14:      #7fdbca
-
-! white
-*.color7:       #a1aab8
-*.color15:      #d6deeb
+! COLORS FOR SXIV
+Sxiv.foreground:   #bbc2cf
+Sxiv.background:   #282c34

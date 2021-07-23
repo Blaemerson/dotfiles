@@ -5,9 +5,8 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-alias ls='ls --color=auto'
 PS1='[\u@\h \W]\$ '
 
 [ -f ~/.config/fzf/fzf.bash ] && source ~/.config/fzf/fzf.bash
-bind C-o : source /home/blake/dbdb.sh
-alias 'nvim'=/home/blake/.local/bin/nvim.appimage
+[ -f ~/.config/shell/aliasrc ] && source ~/.config/shell/aliasrc
+# bind C-o : source /home/blake/dbdb.sh

@@ -55,7 +55,7 @@ Editor=\$EDITOR
 
 # Options for 'fd'. Keep in mind that some options like '--list-details'
 # break the script.
-FdOptions='--absolute-path --type file --type symlink'
+# FdOptions='--absolute-path --type file --type symlink'
 
 # Options for 'fzf'.
 FzfOptions=\"--prompt='Select file to edit: '\"
