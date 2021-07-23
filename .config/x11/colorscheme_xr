@@ -1,0 +1,37 @@
+! Nightfly
+*.foreground:  #acb4c2
+*.background:  #011627
+*.cursorColor: #9ca1aa
+!
+! Black
+*.color0:      #1d3b53
+*.color8:      #7c8f8f
+!
+! Red
+*.color1:      #fc514e
+*.color9:      #ff5874
+!
+! Green
+*.color2:      #a1cd5e
+*.color10:     #21c7a8
+!
+! Yellow
+*.color3:      #e3d18a
+*.color11:     #ecc48d
+!
+! Blue
+*.color4:      #5a99d7
+*.color12:     #5a99d7
+!
+! Magenta
+*.color5:      #c792ea
+*.color13:     #ae81ff
+!
+! Cyan
+*.color6:      #7fdbca
+*.color14:     #7fdbca
+!
+! White
+*.color7:      #a1aab8
+*.color15:     #d6deeb
+

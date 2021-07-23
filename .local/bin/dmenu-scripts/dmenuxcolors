@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+main() {
+  declare -A colors
+  colors[moonfly]="$HOME/.config/x11/colors/moonfly_xr"
+  colors[nightfly]="$HOME/.config/x11/colors/nightfly_xr"
+  colors[arcadia]="$HOME/.config/x11/colors/arcadia_xr"
+  colors[monokai-dimmed]="$HOME/.config/x11/colors/monokaidimmed_xr"
+  colors[tomorrow-night-eighties]="$HOME/.config/x11/colors/tomorrownighteighties_xr"
+  colors[firewatch]="$HOME/.config/x11/colors/firewatch_xr"
+  colors[material]="$HOME/.config/x11/colors/material_xr"
+  colors[orangish]="$HOME/.config/x11/colors/orangish_xr"
+  choice=$(printf '%s\n' "${!colors[@]}" | sort | dmenu -i -l 20 "$@")
+  # What to do when/if we choose a colorscheme.
+  if [ "$choice" ]; then
+    col=$(printf '%s\n' "${colors["${choice}"]}")
+    cat "$col" > ~/.config/x11/colorscheme_xr
+    xrdb -load ~/.config/x11/colorscheme_xr
+    kill -HUP $(pgrep -u $USER "\bdwm$")
+  # What to do if we just escape without choosing anything.
+  else
+      echo "Program terminated." && exit 0
+  fi
+}
+
+[[ "${BASH_SOURCE[0]}" == "${0}" ]] && main "$@"
