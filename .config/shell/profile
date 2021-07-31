@@ -12,7 +12,7 @@ unsetopt PROMPT_SP
 
 # Default programs:
 export EDITOR="nvim"
-export TERMINAL="st"
+export TERMINAL="alacritty"
 export BROWSER="firefox"
 
 # ~/ Clean-up:
@@ -60,7 +60,9 @@ export QT_QPA_PLATFORMTHEME="gtk2"	# Have QT use gtk2 theme.
 export MOZ_USE_XINPUT2="1"		# Mozilla smooth scrolling/touchpads.
 export AWT_TOOLKIT="MToolkit wmname LG3D"	#May have to install wmname
 export _JAVA_AWT_WM_NONREPARENTING=1	# Fix for Java applications in dwm
-export JAVA_HOME="/usr/lib/jvm/java-15-openjdk"
+# export JAVA_HOME="/usr/lib/jvm/java-16-openjdk"
+# export JAR="~/.local/share/nvim/lspinstall/java/plugins/org.eclipse.equinox.launcher_1.6.200.v20210416-2027.jar"
+# export JDTLS_CONFIG="~/.local/share/nvim/lspinstall/java/config_linux/"
 
 # This is the list for lf icons:
 export LF_ICONS="di=:\
