@@ -23,11 +23,12 @@ for _, plugin in pairs(disabled_built_ins) do
 end
 
 local opt = vim.opt
+
 -- local g = vim.g
 
 opt.shadafile = "NONE"
 
-opt.termguicolors = true
+-- opt.termguicolors = true
 
 opt.ruler = false
 opt.hidden = true
@@ -48,8 +49,9 @@ opt.wrap = false
 opt.textwidth = 80
 opt.wildmenu = true
 opt.wildmode = 'longest:list:full'
-opt.relativenumber = true
-opt.number = true
+
+opt.relativenumber = false
+opt.number = false
 opt.autochdir = true
 opt.laststatus = 1
 

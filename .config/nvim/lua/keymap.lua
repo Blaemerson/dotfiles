@@ -1,19 +1,6 @@
 vim.g.mapleader = ' '
 local map = vim.api.nvim_set_keymap
-
--- Shortcuts for editing the keymap file and reloading the config
-vim.cmd [[command! -nargs=* NvimEditInit edit $MYVIMRC]]
-vim.cmd [[command! -nargs=* NvimEditKeymap edit ~/.config/nvim/lua/keymap.lua]]
-vim.cmd [[command! -nargs=* NvimEditUtil edit ~/.config/nvim/lua/util.lua]]
-vim.cmd [[command! -nargs=* NvimEditOptions edit ~/.config/nvim/lua/options.lua]]
-vim.cmd [[command! -nargs=* NvimEditTheme edit ~/.config/nvim/lua/theme.lua]]
-vim.cmd [[command! -nargs=* NvimSource luafile %]]
-
--- Shortcuts for opening terminal
-vim.cmd [[command! -nargs=* Terminal term]]
-vim.cmd [[command! -nargs=* TerminalVert 30vsplit | term ]]
-vim.cmd [[command! -nargs=* TerminalHori 10split | term]]
-
+-- Writing / quitting
 map('', '<leader>qq', ':q!<CR>', {silent = true})
 map('', '<leader>qa', ':qa<CR>', {silent = true})
 map('', '<leader>qw', ':wq<CR><CR>', {silent = true})
@@ -22,6 +9,7 @@ map('', '<leader>ww', ':w<CR>', {silent = true})
 map('', '<leader>wa', ':wa<CR>', {silent = true})
 
 map('', '<leader>bd', ':bd<CR>', {silent = true})
+map('', '<leader>bn', ':enew<CR>', {silent = true})
 
 -- Edit config files
 map('', '<leader>ci', ':NvimEditInit<CR>',   { silent = true })
@@ -32,51 +20,60 @@ map('', '<leader>co', ':NvimEditOptions<CR>', { silent = true })
 map('', '<leader>c.', ':NvimSource<CR>',     { silent = true })
 
 -- Setting options
-map('', '<leader>sn', ':set relativenumber! number<CR>',   { silent = true })
-map('', '<leader>sN', ':set nonumber norelativenumber<CR>',   { silent = true })
+map('', '<leader>sn', ':set rnu! number!<CR>',   { silent = true })
+-- map('', '<leader>sN', ':set nonumber norelativenumber<CR>',   { silent = true })
 map('', '<leader>sw', ':set wrap!<CR>',   { silent = true })
 
 -- Finding files
-map('', '<leader>ff', ':lua require("fzf-lua").files()<CR>', {})
-map('', '<leader>fw', ':lua require("fzf-lua").live_grep()<CR>', {silent = true})
-map('', '<leader>fg', ':lua require("fzf-lua").git_files()<CR>', {silent = true})
-map('', '<leader>fh', ':lua require("fzf-lua").oldfiles()<CR>', {silent = true})
-map('', '<leader>fc', ':lua require("fzf-lua").files({ cwd = "~/.config"})<CR>', {})
-map('', '<leader>fn', ':lua require("fzf-lua").files({ cwd = "~/.config/nvim"})<CR>', {})
+map('', '<leader>ff', ':packadd fzf-lua | :packadd nvim-fzf | lua require("fzf-lua").files()<CR>', {silent = true})
+map('', '<leader>fw', ':packadd fzf-lua | :packadd nvim-fzf | lua require("fzf-lua").live_grep()<CR>', {silent = true})
+map('', '<leader>fg', ':packadd fzf-lua | :packadd nvim-fzf | lua require("fzf-lua").git_files()<CR>', {silent = true})
+map('', '<leader>fh', ':packadd fzf-lua | :packadd nvim-fzf | lua require("fzf-lua").oldfiles()<CR>', {silent = true})
+map('', '<leader>fc', ':packadd fzf-lua | :packadd nvim-fzf | lua require("fzf-lua").files({ cwd = "~/.config"})<CR>', {silent = true})
+map('', '<leader>fn', ':packadd fzf-lua | :packadd nvim-fzf | lua require("fzf-lua").files({ cwd = "~/.config/nvim"})<CR>', {silent = true})
 
 -- Opening tools
-map('', '<leader>oe', ':NvimTreeToggle<CR>',     { silent = true })
-map('', '<leader>ot', ':TerminalHori<CR>',     { silent = true })
+map('', '<leader>oe', ':packadd nvim-tree.lua | NvimTreeToggle<CR>',     { silent = true })
+map('', '<leader>ot', ':Terminal<CR>',     { silent = true })
+map('n', 'f', ':packadd nvim-tree.lua | NvimTreeToggle<CR>',     { silent = true })
+map('n', 't', ':TerminalHori<CR>',     { silent = true })
+map('n', '<S-t>', ':TerminalVert<CR>',     { silent = true })
 
+-- Exit terminal with Escape
+map('t', '<ESC>', 'exit<CR>',     { silent = true })
+
+-- Shortcuts for the little things
 map('n', ';', ':', {})
-map('n', '!', ':!', {})
+map('n', '!!', ':!', {})
+map('n', 'H', '0', {})
+map('n', 'L', '$', {})
+map('n', 'J', '<C-d>', {})
+map('n', 'K', '<C-u>', {})
 
 -- Change current working dir (:pwd) to curent file's folder
 map('n', '<leader>%', ':cd %:h | pwd<CR>',   { noremap = true, silent = true })
 map('n', '<leader>*', ':%s/<C-r><C-w>//g<left><left>',   { noremap = true })
--- map('i', '<CR>}', '}<up>',   { noremap = true, nowait = true })
 
 -- Open terminal
 map('n', '<leader>tt', ':Terminal<CR>',   { noremap = true, silent = true })
 map('n', '<leader>tv', ':TerminalVert<CR>',   { noremap = true, silent = true })
 map('n', '<leader>th', ':TerminalHori<CR>',   { noremap = true, silent = true })
 
-map('n', '<Tab>', ':bnext<CR>',   { silent = true })
+-- Buffer navigation
+map('n', '<Tab>', ':bnext | packadd nvim-bufferline.lua | lua require("bufferline").setup()<CR>',   { silent = true })
 map('n', '<S-Tab>', ':bprev<CR>',   { silent = true })
 
 -- Split navigation
-map('n', '<S-h>', '<C-w>h', {})
-map('n', '<S-j>', '<C-w>j', {})
-map('n', '<S-k>', '<C-w>k', {})
-map('n', '<S-l>', '<C-w>l', {})
+map('n', '<C-h>', '<C-w>h', {})
+map('n', '<C-j>', '<C-w>j', {})
+map('n', '<C-k>', '<C-w>k', {})
+map('n', '<C-l>', '<C-w>l', {})
 
 -- Split resizing
-map('n', '<C-h>', ':vertical resize +2<CR>', { silent = true })
-map('n', '<C-j>', ':resize -2<CR>', { silent = true })
-map('n', '<C-k>', ':resize +2<CR>', { silent = true })
-map('n', '<C-l>', ':vertical resize -2<CR>', { silent = true })
+map('n', '<LEFT>', ':vertical resize +2<CR>', { silent = true })
+map('n', '<DOWN>', ':resize -2<CR>', { silent = true })
+map('n', '<UP>', ':resize +2<CR>', { silent = true })
+map('n', '<RIGHT>', ':vertical resize -2<CR>', { silent = true })
 
--- Remove trailing whitespaces
-vim.cmd([[autocmd BufWritePre * %s/\s\+$//e]])
-vim.cmd([[autocmd BufWritePre * %s/\n\+\%$//e]])
-vim.cmd([[autocmd BufWinEnter,WinEnter term://* startinsert]])
+map('n', '<leader>lc', ':packadd nvim-compe | :packadd vim-vsnip | lua require "plugin.compe"<CR>', { silent = false })
+map('n', '<leader>ls', ':packadd surround.nvim | lua require"surround".setup{}<CR>', { silent = false })
