@@ -12,11 +12,11 @@ map('', '<leader>bd', ':bd<CR>', {silent = true})
 map('', '<leader>bn', ':enew<CR>', {silent = true})
 
 -- Edit config files
-map('', '<leader>ci', ':NvimEditInit<CR>',   { silent = true })
-map('', '<leader>ck', ':NvimEditKeymap<CR>', { silent = true })
-map('', '<leader>cu', ':NvimEditUtil<CR>', { silent = true })
-map('', '<leader>ct', ':NvimEditTheme<CR>', { silent = true })
-map('', '<leader>co', ':NvimEditOptions<CR>', { silent = true })
+map('', '<leader>ci', ':edit $MYVIMRC<CR>',   { silent = true })
+map('', '<leader>ck', ':edit ~/.config/nvim/lua/keymap.lua<CR>', { silent = true })
+map('', '<leader>cu', ':edit ~/.config/nvim/lua/util.lua<CR>', { silent = true })
+map('', '<leader>ct', ':edit ~/.config/nvim/lua/theme.lua<CR>', { silent = true })
+map('', '<leader>co', ':edit ~/.config/nvim/lua/options.lua<CR>', { silent = true })
 map('', '<leader>c.', ':NvimSource<CR>',     { silent = true })
 
 -- Setting options
@@ -25,16 +25,16 @@ map('', '<leader>sn', ':set rnu! number!<CR>',   { silent = true })
 map('', '<leader>sw', ':set wrap!<CR>',   { silent = true })
 
 -- Finding files
-map('', '<leader>ff', ':packadd fzf-lua | :packadd nvim-fzf | lua require("fzf-lua").files()<CR>', {silent = true})
-map('', '<leader>fw', ':packadd fzf-lua | :packadd nvim-fzf | lua require("fzf-lua").live_grep()<CR>', {silent = true})
-map('', '<leader>fg', ':packadd fzf-lua | :packadd nvim-fzf | lua require("fzf-lua").git_files()<CR>', {silent = true})
-map('', '<leader>fh', ':packadd fzf-lua | :packadd nvim-fzf | lua require("fzf-lua").oldfiles()<CR>', {silent = true})
-map('', '<leader>fc', ':packadd fzf-lua | :packadd nvim-fzf | lua require("fzf-lua").files({ cwd = "~/.config"})<CR>', {silent = true})
-map('', '<leader>fn', ':packadd fzf-lua | :packadd nvim-fzf | lua require("fzf-lua").files({ cwd = "~/.config/nvim"})<CR>', {silent = true})
+map('', '<leader>ff', ':FzfLua files<CR>', {silent = true})
+map('', '<leader>fw', ':FzfLua live_grep<CR>', {silent = true})
+map('', '<leader>fg', ':FzfLua git_files<CR>', {silent = true})
+map('', '<leader>fh', ':FzfLua oldfiles<CR>', {silent = true})
+map('', '<leader>fc', ':FzfLua files cwd=~/.config<CR>', {silent = true})
+map('', '<leader>fp', ':FzfLua files cwd=~/projects<CR><CR>', {silent = true})
 
 -- Opening tools
-map('', '<leader>oe', ':packadd nvim-tree.lua | NvimTreeToggle<CR>',     { silent = true })
-map('', '<leader>ot', ':Terminal<CR>',     { silent = true })
+--map('', '<leader>oe', ':packadd nvim-tree.lua | NvimTreeToggle<CR>',     { silent = true })
+--map('', '<leader>ot', ':Terminal<CR>',     { silent = true })
 map('n', 'f', ':packadd nvim-tree.lua | NvimTreeToggle<CR>',     { silent = true })
 map('n', 't', ':TerminalHori<CR>',     { silent = true })
 map('n', '<S-t>', ':TerminalVert<CR>',     { silent = true })
@@ -49,6 +49,8 @@ map('n', 'H', '0', {})
 map('n', 'L', '$', {})
 map('n', 'J', '<C-d>', {})
 map('n', 'K', '<C-u>', {})
+map('n', 'n', 'nzz', {})
+map('n', 'N', 'Nzz', {})
 
 -- Change current working dir (:pwd) to curent file's folder
 map('n', '<leader>%', ':cd %:h | pwd<CR>',   { noremap = true, silent = true })
@@ -75,5 +77,5 @@ map('n', '<DOWN>', ':resize -2<CR>', { silent = true })
 map('n', '<UP>', ':resize +2<CR>', { silent = true })
 map('n', '<RIGHT>', ':vertical resize -2<CR>', { silent = true })
 
-map('n', '<leader>lc', ':packadd nvim-compe | :packadd vim-vsnip | lua require "plugin.compe"<CR>', { silent = false })
-map('n', '<leader>ls', ':packadd surround.nvim | lua require"surround".setup{}<CR>', { silent = false })
+--map('n', '<leader>lc', ':packadd nvim-compe<CR>"', { silent = false })
+--map('n', '<leader>ls', ':packadd surround.nvim | lua require"surround".setup{}<CR>', { silent = false })

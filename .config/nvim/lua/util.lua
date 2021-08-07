@@ -10,11 +10,11 @@ vim.api.nvim_exec([[
 local cmd = vim.cmd
 
 -- Shortcuts for editing the keymap file and reloading the config
-cmd [[command! -nargs=* NvimEditInit edit $MYVIMRC]]
-cmd [[command! -nargs=* NvimEditKeymap edit ~/.config/nvim/lua/keymap.lua]]
-cmd [[command! -nargs=* NvimEditUtil edit ~/.config/nvim/lua/util.lua]]
-cmd [[command! -nargs=* NvimEditOptions edit ~/.config/nvim/lua/options.lua]]
-cmd [[command! -nargs=* NvimEditTheme edit ~/.config/nvim/lua/theme.lua]]
+--cmd [[command! -nargs=* NvimEditInit edit $MYVIMRC]]
+--cmd [[command! -nargs=* NvimEditKeymap edit ~/.config/nvim/lua/keymap.lua]]
+--cmd [[command! -nargs=* NvimEditUtil edit ~/.config/nvim/lua/util.lua]]
+--cmd [[command! -nargs=* NvimEditOptions edit ~/.config/nvim/lua/options.lua]]
+--cmd [[command! -nargs=* NvimEditTheme edit ~/.config/nvim/lua/theme.lua]]
 cmd [[command! -nargs=* NvimSource luafile %]]
 
 -- Shortcuts for opening terminal
