@@ -28,35 +28,42 @@ local opt = vim.opt
 
 opt.shadafile = "NONE"
 
--- opt.termguicolors = true
+opt.termguicolors = true
 
 opt.ruler = false
 opt.hidden = true
-opt.ignorecase = true
+opt.ignorecase = false
 opt.splitbelow = true
 opt.splitright = true
 opt.cul = true
 opt.mouse = "a"
 opt.signcolumn = "yes"
+opt.hlsearch = false
 opt.cmdheight = 1
 opt.updatetime = 250 -- update interval for gitsigns
 opt.timeoutlen = 400
 opt.clipboard = "unnamedplus" -- use the system-wide clipboard
-opt.scrolloff = 3
+opt.scrolloff = 9
 opt.lazyredraw = true
 opt.linebreak = true
 opt.wrap = false
 opt.textwidth = 80
 opt.wildmenu = true
 opt.wildmode = 'longest:list:full'
+opt.swapfile = false
+opt.backup = false
+-- opt.undodir = '~/.local/share/nvim/undo'
+opt.undofile = true
 
-opt.relativenumber = false
-opt.number = false
-opt.autochdir = true
+opt.relativenumber = true
+opt.number = true
+opt.autochdir = false
 opt.laststatus = 1
 
 opt.numberwidth = 2
 
+opt.tabstop = 2
+opt.softtabstop = 2
 opt.expandtab = true
 opt.shiftwidth = 2
-opt.smartindent = true
+opt.smartindent = false

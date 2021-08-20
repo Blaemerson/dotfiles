@@ -1,9 +1,9 @@
 local modules = {
     "options",
-    "keymap",
     "theme",
+    "packer.plugins",
     "util",
-    "plugins"
+    "keymap"
 }
 for i = 1, #modules, 1 do
     pcall(require, modules[i])

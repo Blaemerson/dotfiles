@@ -38,12 +38,14 @@ alias uninstall="sudo pacman -Rns"
 alias yta='youtube-dl --add-metadata --extract-audio --audio-format mp3 -o "./%(title)s.%(ext)s"'
 alias ytv='youtube-dl -f "[height<=720]" -o "./%(title)s.%(ext)s"'
 
-# Git
+# alias topdf='pandoc -s -V geometry=margin=1in -o %:r.pdf % && !zathura %:r.pdf'
+
+# Git for configuration control
 alias config='/usr/bin/git --git-dir=/home/blake/.dotfiles --work-tree=/home/blake' # Working with dotfiles
 
 # FZF
 # fd - cd to selected directory
-fd() {
+fcd() {
   local dir
   dir=$(find ${1:-.} -path '*/\.*' -prune \
                   -o -type d -print 2> /dev/null | fzf +m) &&
@@ -53,7 +55,7 @@ fd() {
 # fe [FUZZY PATTERN] - Open the selected file with the default editor
 #   - Bypass fuzzy finder if there's only one match (--select-1)
 #   - Exit if there's no match (--exit-0)
-fe() {
+fze() {
   IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0))
   [[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
 }

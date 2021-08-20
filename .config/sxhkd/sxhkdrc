@@ -3,7 +3,7 @@ super + Escape
   pkill -USR1 -x sxhkd
 
 # Edit this configuration file
-control + alt + c
+control + alt + k
   $TERMINAL -e nvim ~/.config/sxhkd/sxhkdrc
 
 # System
@@ -42,19 +42,24 @@ super + control + p
 
 # File explorer
 alt + {_, shift + } + f
-  {$TERMINAL -e ~/.config/vifm/scripts/vifmrun, $TERMINAL -e lf}
+  {$TERMINAL -e ~/.config/vifm/scripts/vifmrun $HOME $XDG_CONFIG_HOME, $TERMINAL -e lf}
 
 # Edit files quickly
-alt + {_, shift + } c
-  {quickedit, dmenuconfs}
+# alt + {_, shift + } c
+#   {quickedit, dmenuconfs}
 
 # Open vim
 alt + v
     $TERMINAL -e nvim
 
+# Open config directory in vim
+alt + c
+  $TERMINAL -e nvim +"cd ~/.config/"
+
+# Take notes with vim
+alt + n
+    $TERMINAL -e nvim +"cd ~/documents/notes/"
+
 # Open sxiv in thumbnail modej
 alt + i
-    dmenuimg
-
-FN + i
     dmenuimg
