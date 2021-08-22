@@ -13,6 +13,7 @@ alias la="ls -lahN --color=auto --group-directories-first"
 alias l.="ls -ahN --color=auto --group-directories-first | egrep '^\.'"
 alias lg="ls -ahN --color=auto --group-directories-first | egrep '${1}'"
 
+alias stow='stow --no-folding --verbose'
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'

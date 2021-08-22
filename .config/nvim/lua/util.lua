@@ -17,7 +17,7 @@ cmd [[command! -nargs=* Terminal term]]
 cmd [[command! -nargs=* TerminalVert 50vsplit | term ]]
 cmd [[command! -nargs=* TerminalHori 10split | term]]
 
-cmd [[command! -nargs=* Writing packadd papercolor-theme-slim | set background=light | color PaperColorSlim ]]
+cmd [[command! -nargs=* Writing set background=light | color newpaper ]]
 cmd [[command! -nargs=* PDF !pandoc -s -V geometry=margin=1in -o %:r.pdf % && zathura %:r.pdf &disown ]]
 
 -- Remove trailing whitespaces
